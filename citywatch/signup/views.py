@@ -23,6 +23,7 @@ def signup(request):
         try:
             user = User.objects.create_user(
                 username=email,
+                email=email,
                 first_name = first_name,
                 last_name=last_name,
                 password = password,
