@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     registerForm.addEventListener("submit", function (e) {
-        e.preventDefault();
         clearErrors();
 
         let isValid = true;
@@ -121,9 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        if (isValid) {
-            alert("Registration successful! Redirecting to home page...");
-            window.location.href = "index.html";
+        // If validation fails, stop submission. If valid, let it post to Django!
+        if (!isValid) {
+            e.preventDefault();
         }
     });
 });

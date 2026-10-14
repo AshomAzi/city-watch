@@ -57,7 +57,8 @@
                 <p>Register to report civic issues and keep track of resolutions in your area.</p>
             </div>
 
-            <form   id="registerForm" class="auth-form" novalidate >
+            <form method="POST" action="{% url 'signup' %}" id="registerForm" class="auth-form" novalidate >
+                {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName" class="form-label">First Name</label>
