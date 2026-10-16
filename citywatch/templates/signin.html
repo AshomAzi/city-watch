@@ -32,12 +32,15 @@
                     <a href="{% url 'signup' %}" class="nav-link">Register</a>
                 </nav>
 
-                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme" title="Toggle theme">
-                    <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
+                    title="Toggle theme">
+                    <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
@@ -58,11 +61,14 @@
                 <div class="alert alert-error" id="backendError"></div>
             </div>
 
-            <form id="loginForm" method="POST" action="" class="auth-form" novalidate>
+            <form id="loginForm" method="POST" action="{% url 'signin' %}" class="auth-form" novalidate>
+
+                {% csrf_token %}
 
                 <div class="form-group">
-                    <label for="username" class="form-label">Email or Username</label>
-                    <input type="text" id="username" name="username" class="form-input" placeholder="you@example.com" required>
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" placeholder="you@example.com"
+                        required>
                     <span class="error-msg" id="usernameError"></span>
                 </div>
 
@@ -71,7 +77,8 @@
                         <label for="password" class="form-label">Password</label>
                         <a href="#" class="auth-link text-sm">Forgot password?</a>
                     </div>
-                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" class="form-input"
+                        placeholder="Enter your password" required>
                     <span class="error-msg" id="passwordError"></span>
                 </div>
 
@@ -88,6 +95,9 @@
             <div class="auth-footer">
                 <p>Don't have an account? <a href="{% url 'signup' %}" class="auth-link">Register here</a></p>
             </div>
+            {% for message in messages %}
+            <span class="error-msg">{{ message }}</span>
+            {% endfor %}
         </div>
     </main>
 
